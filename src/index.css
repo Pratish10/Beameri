@@ -1,0 +1,14 @@
+/* inria derif font  */
+@import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Cardo&family=Inria+Serif&display=swap');
+/* inria sans font  */
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans&display=swap');
+/* Kiwi Maru  */
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap');
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
