@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -23,8 +22,7 @@ const NavItems = [
   { name: "Contact Us", to: "/contactus" },
 ];
 
-function Header(props) {
-  const { window } = props;
+function Header() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -82,9 +80,6 @@ function Header(props) {
     </Box>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
-
   return (
     <Box
       sx={{
@@ -131,7 +126,7 @@ function Header(props) {
                   textDecoration: "none",
                   color: "#333",
                   fontFamily: "Inria Serif",
-                  fontSize: "1rem",
+                  fontSize: "1.3rem",
                   fontStyle: "normal",
                   fontWeight: "bold",
                   lineHeight: "normal",
@@ -162,7 +157,6 @@ function Header(props) {
       </AppBar>
       <nav>
         <Drawer
-          container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
@@ -183,13 +177,5 @@ function Header(props) {
     </Box>
   );
 }
-
-Header.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
 
 export default Header;
