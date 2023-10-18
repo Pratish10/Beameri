@@ -12,14 +12,7 @@ const Contactus = () => {
     ml: { xs: 2, sm: 20 },
     mr: { xs: 2, sm: 20 },
   };
-  const inputFieldStyle = {
-    color: "#333",
-    fontFamily: "Inria Sans",
-    fontSize: "1.25rem",
-    fontStyle: "normal",
-    fontWeight: 400,
-    lineHeight: "normal",
-  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <Box sx={{ margin: "0 auto", px: 2, mt: 15, ...commonStyles }}>
@@ -81,8 +74,8 @@ const Contactus = () => {
             </Grid>
           </Grid>
           <br />
-          <Box>Captcha</Box>
-          <br />
+          {/* <Box>Captcha</Box> */}
+          {/* <br /> */}
           <Button
             style={{
               backgroundColor: "#F26A5A",
