@@ -39,6 +39,9 @@ const contactReducer = (state, action) => {
     case "SET_SNACKBAR":
       return { ...state, snackbar: action.value };
     default:
+      if (action.type === "SET_FIELD" && state[action.field + "Error"]) {
+        return { ...state, [action.field + "Error"]: "" };
+      }
       return state;
   }
 };
@@ -208,17 +211,28 @@ const Contactus = () => {
                   sx={{ fontFamily: "Inria Sans" }}
                   value={state.name}
                   onChange={(e) => {
+                    const name = e.target.value.substring(0, 49);
                     dispatch({
                       type: "SET_FIELD",
                       field: "name",
-                      value: e.target.value.substring(0, 49),
+                      value: name,
                     });
-                    setNameCharacterCount(e.target.value.length);
+                    setNameCharacterCount(name.length);
+
+                    if (state.nameError) {
+                      dispatch({
+                        type: "SET_ERROR",
+                        field: "name",
+                        value: "",
+                      });
+                    }
                   }}
                   error={state.nameError !== ""}
                   helperText={
-                    `${nameCharacterCount}/50 charactors allowed` ||
-                    state.nameError
+                    state.nameError ||
+                    (state.nameError
+                      ? ""
+                      : `${nameCharacterCount}/50 characters allowed`)
                   }
                 />
               </FormControl>
@@ -231,17 +245,28 @@ const Contactus = () => {
                   fullWidth
                   value={state.email}
                   onChange={(e) => {
+                    const email = e.target.value.substring(0, 29);
                     dispatch({
                       type: "SET_FIELD",
                       field: "email",
-                      value: e.target.value.substring(0, 29),
+                      value: email,
                     });
-                    setEmailCharacterCount(e.target.value.length);
+                    setEmailCharacterCount(email.length);
+
+                    if (state.emailError) {
+                      dispatch({
+                        type: "SET_ERROR",
+                        field: "email",
+                        value: "",
+                      });
+                    }
                   }}
                   error={state.emailError !== ""}
                   helperText={
-                    `${emailCharacterCount}/30 charactors allowed` ||
-                    state.emailError
+                    state.emailError ||
+                    (state.emailError
+                      ? ""
+                      : `${emailCharacterCount}/30 characters allowed`)
                   }
                 />
               </FormControl>
@@ -254,17 +279,28 @@ const Contactus = () => {
                   fullWidth
                   value={state.mobNumber}
                   onChange={(e) => {
+                    const mobNumber = e.target.value.substring(0, 29);
                     dispatch({
                       type: "SET_FIELD",
                       field: "mobNumber",
-                      value: e.target.value.substring(0, 10),
+                      value: mobNumber,
                     });
-                    setMobNumberCharacterCount(e.target.value.length);
+                    setMobNumberCharacterCount(mobNumber.length);
+
+                    if (state.mobNumberError) {
+                      dispatch({
+                        type: "SET_ERROR",
+                        field: "mobNumber",
+                        value: "",
+                      });
+                    }
                   }}
                   error={state.mobNumberError !== ""}
                   helperText={
-                    `${mobNumberCharacterCount}/10 charactors allowed` ||
-                    state.emailError
+                    state.mobNumberError ||
+                    (state.mobNumberError
+                      ? ""
+                      : `${mobNumberCharacterCount}/30 characters allowed`)
                   }
                 />
               </FormControl>
@@ -278,17 +314,28 @@ const Contactus = () => {
                   fullWidth
                   value={state.message}
                   onChange={(e) => {
+                    const message = e.target.value.substring(0, 29);
                     dispatch({
                       type: "SET_FIELD",
                       field: "message",
-                      value: e.target.value.substring(0, 249),
+                      value: message,
                     });
-                    setMessageCharacterCount(e.target.value.length);
+                    setMessageCharacterCount(message.length);
+
+                    if (state.messageError) {
+                      dispatch({
+                        type: "SET_ERROR",
+                        field: "message",
+                        value: "",
+                      });
+                    }
                   }}
                   error={state.messageError !== ""}
                   helperText={
-                    `${messageCharacterCount}/250 charactors allowed` ||
-                    state.messageError
+                    state.messageError ||
+                    (state.messageError
+                      ? ""
+                      : `${messageCharacterCount}/30 characters allowed`)
                   }
                 />
               </FormControl>
