@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 
 const initialState = {
   name: "",
@@ -45,6 +45,10 @@ const contactReducer = (state, action) => {
 
 const Contactus = () => {
   const [state, dispatch] = useReducer(contactReducer, initialState);
+  const [nameCharacterCount, setNameCharacterCount] = useState(0);
+  const [emailCharacterCount, setEmailCharacterCount] = useState(0);
+  const [mobNumberCharacterCount, setMobNumberCharacterCount] = useState(0);
+  const [messageCharacterCount, setMessageCharacterCount] = useState(0);
 
   const isValidEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -106,7 +110,7 @@ const Contactus = () => {
 
       try {
         const response = await fetch(
-          "https://crowded-sweatpants-elk.cyclic.cloud/api/contact/request/new",
+          "https://crowded-sweatpants-elk.cyclic.cloud/api/contact/request/",
           {
             method: "POST",
             body: JSON.stringify(contactData),
@@ -203,15 +207,19 @@ const Contactus = () => {
                   fullWidth
                   sx={{ fontFamily: "Inria Sans" }}
                   value={state.name}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     dispatch({
                       type: "SET_FIELD",
                       field: "name",
-                      value: e.target.value,
-                    })
-                  }
+                      value: e.target.value.substring(0, 49),
+                    });
+                    setNameCharacterCount(e.target.value.length);
+                  }}
                   error={state.nameError !== ""}
-                  helperText={state.nameError}
+                  helperText={
+                    `${nameCharacterCount}/50 charactors allowed` ||
+                    state.nameError
+                  }
                 />
               </FormControl>
             </Grid>
@@ -222,15 +230,19 @@ const Contactus = () => {
                   label="Email ID"
                   fullWidth
                   value={state.email}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     dispatch({
                       type: "SET_FIELD",
                       field: "email",
-                      value: e.target.value,
-                    })
-                  }
+                      value: e.target.value.substring(0, 29),
+                    });
+                    setEmailCharacterCount(e.target.value.length);
+                  }}
                   error={state.emailError !== ""}
-                  helperText={state.emailError}
+                  helperText={
+                    `${emailCharacterCount}/30 charactors allowed` ||
+                    state.emailError
+                  }
                 />
               </FormControl>
             </Grid>
@@ -241,15 +253,19 @@ const Contactus = () => {
                   label="Mobile Number"
                   fullWidth
                   value={state.mobNumber}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     dispatch({
                       type: "SET_FIELD",
                       field: "mobNumber",
-                      value: e.target.value,
-                    })
-                  }
+                      value: e.target.value.substring(0, 10),
+                    });
+                    setMobNumberCharacterCount(e.target.value.length);
+                  }}
                   error={state.mobNumberError !== ""}
-                  helperText={state.mobNumberError}
+                  helperText={
+                    `${mobNumberCharacterCount}/10 charactors allowed` ||
+                    state.emailError
+                  }
                 />
               </FormControl>
             </Grid>
@@ -261,15 +277,19 @@ const Contactus = () => {
                   rows={4}
                   fullWidth
                   value={state.message}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     dispatch({
                       type: "SET_FIELD",
                       field: "message",
-                      value: e.target.value,
-                    })
-                  }
+                      value: e.target.value.substring(0, 249),
+                    });
+                    setMessageCharacterCount(e.target.value.length);
+                  }}
                   error={state.messageError !== ""}
-                  helperText={state.messageError}
+                  helperText={
+                    `${messageCharacterCount}/250 charactors allowed` ||
+                    state.messageError
+                  }
                 />
               </FormControl>
             </Grid>
