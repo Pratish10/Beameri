@@ -28,14 +28,12 @@ const Home = () => {
       <Vision />
       <HowItWorks />
       {CARD_CONTENT.map((card) => (
-        <>
-          <Card
-            key={card.id}
-            title={card.title}
-            content={card.content}
-            content2={card.content2}
-          />
-        </>
+        <Card
+          key={card.id}
+          title={card.title}
+          content={card.content}
+          content2={card.content2}
+        />
       ))}
     </>
   );

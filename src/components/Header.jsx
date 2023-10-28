@@ -138,20 +138,22 @@ function Header() {
             ))}
           </Box>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <Button
-              style={{
-                backgroundColor: "#F26A5A",
-                color: "#FFF",
-                fontFamily: "Inria Serif",
-                fontSize: "1rem",
-                fontStyle: "normal",
-                fontWeight: 400,
-                lineHeight: "normal",
-                padding: "9px 11px 9px 11px",
-              }}
-            >
-              Sign Up
-            </Button>
+            <Link to="/authform">
+              <Button
+                style={{
+                  backgroundColor: "#F26A5A",
+                  color: "#FFF",
+                  fontFamily: "Inria Serif",
+                  fontSize: "1rem",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  lineHeight: "normal",
+                  padding: "9px 11px 9px 11px",
+                }}
+              >
+                Sign Up
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </AppBar>
